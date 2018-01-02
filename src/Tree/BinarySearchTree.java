@@ -1,5 +1,8 @@
 package Tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 二分搜索树
  * 
@@ -13,6 +16,9 @@ public class BinarySearchTree {
 
 	// 节点数
 	private int size = 0;
+
+	// 存放树的队列
+	Queue<Node> queue = new LinkedList<>();
 
 	public boolean isEmpty() {
 		return root == null;
@@ -62,41 +68,119 @@ public class BinarySearchTree {
 		return contain(e, root);
 	}
 
-	private boolean contain(int e, Node parent) {
-		if (parent.data == e) {
+	private boolean contain(int e, Node node) {
+		if (node.data == e) {
 			return true;
 		}
-		if (e < parent.data) {
-			return parent.left == null ? false : contain(e, parent.left);
+		if (e < node.data) {
+			return node.left == null ? false : contain(e, node.left);
 		} else {
-			return parent.right == null ? false : contain(e, parent.right);
+			return node.right == null ? false : contain(e, node.right);
 		}
 	}
 
-	// 获得最大值
-	public int max() {
-		if(root==null)
-			throw new NullPointerException();
-		else {
-			Node p = root;
-			while(p.right != null) {
-				p = p.right;
-			}
-			return p.data;
+	/**
+	 * 获取最大值
+	 * 
+	 * @return 返回最大值，若树为空的时候返回null
+	 */
+	public Node max() {
+		if (root == null)
+			return null;
+		Node node = root;
+		while (node.right != null)
+			node = node.right;
+		return node;
+	}
+
+	/**
+	 * 获取最小值
+	 * 
+	 * @return 返回最小值，若树为空的时候返回空
+	 */
+	public Node min() {
+		if (root == null)
+			return null;
+		return min(root);
+	}
+
+	private Node min(Node node) {
+		return node.left == null ? node : min(node.left);
+	}
+
+	public void print() {
+		// System.out.println("先序遍历：");
+		// previous(root);
+		// System.out.println();
+		System.out.println("中序遍历：");
+		middle(root);
+		System.out.println();
+		// System.out.println("后序遍历：");
+		// later(root);
+		// System.out.println();
+		// System.out.println("层序遍历：");
+		// sequence();
+		// System.out.println();
+	}
+
+	private void previous(Node node) {
+		if (node == null)
+			return;
+		System.out.print(node.data + "  ");
+		// 遍历左子树
+		previous(node.left);
+		// 遍历右子树
+		previous(node.right);
+	}
+
+	private void middle(Node node) {
+		if (node == null)
+			return;
+		// 遍历左子树
+		middle(node.left);
+		System.out.print(node.data + "  ");
+		// 遍历右子树
+		middle(node.right);
+	}
+
+	private void later(Node node) {
+		if (node == null)
+			return;
+		// 遍历左子树
+		later(node.left);
+		// 遍历右子树
+		later(node.right);
+		System.out.print(node.data + "  ");
+
+	}
+
+	private void sequence() {
+		if (root == null)
+			return;
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			Node node = queue.peek();
+			if (node.left != null)
+				queue.add(node.left);
+			if (node.right != null)
+				queue.add(node.right);
+			System.out.print(queue.poll().data + "  ");
 		}
 	}
-	
-	// 获得最小值
-	public int min() {
-		if(root==null)
-			throw new NullPointerException();
-		else {
-			Node p = root;
-			while(p.left != null) {
-				p = p.left;
-			}
-			return p.data;
-		}
+
+	public void reverse() {
+		reverse(root);
+	}
+
+	private void reverse(Node node) {
+		if (node != null) {
+			Node temp = node.left;
+			node.left = node.right;
+			node.right = temp;
+			reverse(node.left);
+			reverse(node.right);
+		} else
+			return;
 	}
 
 }
