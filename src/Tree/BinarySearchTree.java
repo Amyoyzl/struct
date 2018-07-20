@@ -109,18 +109,18 @@ public class BinarySearchTree {
 	}
 
 	public void print() {
-		// System.out.println("先序遍历：");
-		// previous(root);
-		// System.out.println();
+		 System.out.println("先序遍历：");
+		 previous(root);
+		 System.out.println();
 		System.out.println("中序遍历：");
 		middle(root);
 		System.out.println();
-		// System.out.println("后序遍历：");
-		// later(root);
-		// System.out.println();
-		// System.out.println("层序遍历：");
-		// sequence();
-		// System.out.println();
+		 System.out.println("后序遍历：");
+		 later(root);
+		 System.out.println();
+		 System.out.println("层序遍历：");
+		 sequence();
+		 System.out.println();
 	}
 
 	private void previous(Node node) {
