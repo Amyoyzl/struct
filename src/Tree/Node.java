@@ -3,13 +3,13 @@ package Tree;
 public class Node {
 
 	// 数据
-	int data;
+	public int data;
 
 	// 左子树
-	Node left;
+	public Node left;
 
 	// 右子树
-	Node right;
+	public Node right;
 
 	public Node(int data) {
 		this.data = data;

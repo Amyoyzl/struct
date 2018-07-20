@@ -16,7 +16,7 @@ public class Queue {
 
 	public void add(int e) {
 		if (size == data.length) {
-			System.out.println("é˜Ÿåˆ—å·²æ»¡");
+			System.out.println("¶ÓÁĞÒÑÂú");
 			return;
 		}
 		data[tail++] = e;
@@ -26,7 +26,7 @@ public class Queue {
 
 	public int poll() {
 		if (size == 0)
-			System.out.println("é˜Ÿç©ºï¼");
+			System.out.println("¶ÓÁĞÎª¿Õ");
 		else {
 			size--;
 			int d = data[head];

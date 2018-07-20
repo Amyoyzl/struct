@@ -1,6 +1,6 @@
 package struct;
 
-public class Stack {
+public class Stack {	
 
 	private String[] data = new String[9];
 
